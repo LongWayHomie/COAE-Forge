@@ -46,6 +46,16 @@ deliberately kept in English. Locale strings live in `frontend/src/locale/`
 
 ---
 
+## Screenshots
+
+![Screenshot 1](images/1.png)
+
+![Screenshot 2](images/2.png)
+
+![Screenshot 3](images/3.png)
+
+---
+
 ## Quick start
 
 ### Option A — Docker (recommended; no local Python/Node needed)
