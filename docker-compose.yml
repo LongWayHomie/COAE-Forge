@@ -1,0 +1,40 @@
+# COAE-Forge — full stack in two containers.
+#   docker compose up --build        start (build on first run)
+#   docker compose up -d --build      start detached
+#   docker compose down               stop & remove
+#   docker compose logs -f            follow logs
+#
+# Open http://localhost:5173  (frontend nginx proxies /api → backend).
+# First use of a data-driven tab downloads MNIST/CIFAR into the `data` volume;
+# first use of the LLM tab downloads Qwen into the `hf` volume (needs internet once).
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: coae-forge-backend
+    container_name: coae-backend
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"        # also exposed directly for /docs (optional)
+    volumes:
+      - data:/app/artifacts/data        # downloaded datasets persist here
+      - hf:/cache/huggingface           # downloaded LLM weights persist here
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: coae-forge-frontend
+    container_name: coae-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  data:
+  hf:

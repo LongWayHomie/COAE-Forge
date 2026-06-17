@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.mypy_cache/
+
+# Datasets are large and auto-downloadable — ignore them. Keep the small trained
+# CNN weights (~9MB, backend/artifacts/*.pt) so a fresh clone runs (and the Docker
+# image builds) without a `make pretrain` step.
+backend/artifacts/data/
+
+# Claude
+.claude/
+
+# Env
+.env
+*.local
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# HF cache (if pointed locally)
+.cache/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+.run/

@@ -1,0 +1,16 @@
+# keep the build context small. NOTE: backend/artifacts/*.pt (model weights, ~9MB)
+# are intentionally NOT ignored — they get baked into the backend image so it runs
+# without a pretrain step. The big datasets live in a volume instead.
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+.git
+.gitignore
+.run
+**/node_modules
+frontend/dist
+backend/artifacts/data
+**/*.log
+.venv
+.vscode
+.idea
